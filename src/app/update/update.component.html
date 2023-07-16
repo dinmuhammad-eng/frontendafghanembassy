@@ -1,0 +1,82 @@
+
+
+<div class="yes">
+  
+    <form [formGroup]="loginForm" (ngSubmit)="logins()">
+      
+      <div class="form-group mt-2">
+        <label for="cnic">CNIC:</label>
+        <input class="form-control" type="text" id="cnic" formControlName="cnic" placeholder="Enter your name"
+          [class.is-invalid]="loginForm.get('name')?.invalid && loginForm.get('cnic')?.touched" required>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="name">Name:</label>
+        <input class="form-control" type="text" id="name" formControlName="name" placeholder="Enter your name"
+          [class.is-invalid]="loginForm.get('cnic')?.invalid && loginForm.get('cnic')?.touched" required>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="familyName"> Family Name:</label>
+        <input class="form-control" type="text" id="familyName" formControlName="familyName" placeholder="Enter your name"
+          [class.is-invalid]="loginForm.get('familyName')?.invalid && loginForm.get('familyName')?.touched" required>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="givenName"> Given Name :</label>
+        <input class="form-control" type="text" id="givenName" formControlName="givenName" placeholder="Enter your name"
+          [class.is-invalid]="loginForm.get('givenName')?.invalid && loginForm.get('givenName')?.touched" required>
+      </div>
+
+      
+      <div class="form-group mt-2">
+        <label for="fatherFulName"> Father Ful Name :</label>
+        <input class="form-control" type="text" id="fatherFulName" formControlName="fatherFulName" placeholder="Enter your name"
+          [class.is-invalid]="loginForm.get('fatherFulName')?.invalid && loginForm.get('fatherFulName')?.touched" required>
+      </div>
+
+        
+      <div class="form-group mt-2">
+        <label for="grandFatherName"> Grand Father Name :</label>
+        <input class="form-control" type="text" id="grandFatherName" formControlName="grandFatherName" placeholder="Enter your Grand Father Name"
+          [class.is-invalid]="loginForm.get('grandFatherName')?.invalid && loginForm.get('grandFatherName')?.touched" required>
+      </div>
+      <div class="form-group">
+        <p>Marital Status</p>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <div *ngFor="let option of materialStats.slice(0, 3)" class="mb-2">
+              <input type="radio" id="{{ option.value }}" formControlName="materialStatus" [value]="option.value">
+              <label for="{{ option.value }}" [ngClass]="{ 'pl-2': option.value !== 'single' }">
+                <span class="mr-1">
+                  <i class="bi bi-check-circle-fill" [ngClass]="{ 'text-primary': option.value === 'single' }"></i>
+                </span>
+                {{ option.name }}
+              </label>
+            </div>
+          </div>
+          <div class="col">
+            <div *ngFor="let option of materialStats.slice(3)" class="mb-2">
+              <input type="radio" id="{{ option.value }}" formControlName="materialStatus" [value]="option.value">
+              <label for="{{ option.value }}" [ngClass]="{ 'pl-2': option.value !== 'single' }">
+                <span class="mr-1">
+                  <i class="bi bi-check-circle-fill" [ngClass]="{ 'text-primary': option.value === 'single' }"></i>
+                </span>
+                {{ option.name }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+      <div class="form-group">
+        <button class="btn btn-primary mt-2" type="submit" [disabled]="loginForm.invalid">Update</button>
+      </div>
+    
+    </form>
+    
+    
+    
+  </div>

@@ -1,0 +1,332 @@
+<div style="background-image: url('assets/images/best5.jpg'); min-height: 100vh; height: auto;"
+  *ngIf="!(userType === 'admin')">
+  <div class="logo">
+    <img src="assets/images/yes.png" alt="Not loaded">
+  </div>
+
+  <div class="lang">
+    <button class="btn  btsof1 btn1" (click)="language = 'english'">English</button>
+    <button class="btn  btsof1 btn2" (click)="language = 'pashto'">پښتو</button>
+    <button class="btn  btsof1 btn3" (click)="language = 'urdu'">اردو</button>
+  </div>
+  <div class="language">
+    {{ language === 'urdu' ? 'مشین، سسٹم یا پروسیس کی تکمیل کے حصے کی خروجی کو ارتقاء دینے کے لئے الیکٹرانک سرکٹ میں تبدیلیوں پیدا کرنے یا خودکار کنٹرول آلہ میں خودکار اصلاحی کارروائی فراہم کرنے کے لئے' :
+    (language === 'pashto' ? 'وړونکی، داوت، یا پروسېس ته برخه د ورته په ماشين، نظام يا عمل ته ورته په بدلولو کې ارتقاء شوی خرڅلاو په اليکټرانکي سرکټ کې بدلونونه کړي او يا خپل چکلۍ کنټرول پېژندل کوونکي ته خپلي خپلخوا اړوند اصلاح کاري کوو' :
+    'The return to the input of a part of the output of a machine, system, or process as for producing changes in an electronic circuit that improve performance or in an automatic control device that provides self-corrective action')
+    }}
+  </div>
+  
+
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="main" >
+      <div>
+        <div class="divfirst"dir="auto">
+          <div class="headers1">
+            {{ language === 'urdu' ? 'روزگاری تفصیلات' : (language === 'pashto' ? 'کار وکړنې معلومات' : 'EMPLOYMENT DETAILS') }}
+          </div>
+          
+
+          <div class="form-group mt-2">
+            <label for="occupation">
+              {{ language === 'urdu' ? 'وظیفہ' : (language === 'pashto' ? 'چارہ' : 'Occupation') }}
+              <span class="compulsory">*</span>
+            </label>
+            <input class="form-control inputs" type="text" id="occupation" formControlName="occupation"
+              [class.is-invalid]="loginForm.get('occupation')?.invalid && loginForm.get('occupation')?.touched"
+              required>
+          </div>
+
+          <div class="form-group mt-2">
+            <label for="employeer">
+              {{ language === 'urdu' ? 'ملازم:' : (language === 'pashto' ? 'کارکن:' : 'Employeer') }}
+              <span class="compulsory">*</span>
+            </label>
+            <input class="form-control inputs" type="text" id="employeer" formControlName="employeer"
+              [class.is-invalid]="loginForm.get('employeer')?.invalid && loginForm.get('employeer')?.touched" required>
+          </div>
+
+        </div>
+        <div class="divfirst" dir="auto">
+          <div class="form-group mt-2">
+            <label for="employeerAddrees">
+              {{ language === 'urdu' ? 'پتہ ملازم:' : (language === 'pashto' ? 'د کارکنو پته:' : 'Employeer Address') }}
+              <span class="compulsory">*</span>
+            </label>
+            <input class="form-control inputs" type="text" id="employeerAddrees" formControlName="employeerAddrees"
+              [class.is-invalid]="loginForm.get('employeerAddrees')?.invalid && loginForm.get('employeerAddrees')?.touched"
+              required>
+          </div>
+
+
+          <div class="form-group mt-2">
+            <label for="previousEmplyeer">
+              {{ language === 'urdu' ? 'پچھلا ملازم:' : (language === 'pashto' ? 'د مخکینی دادا نوم:' : 'Previous Employer') }}
+            </label>
+            <input class="form-control inputs" type="text" id="previousEmplyeer" formControlName="previousEmplyeer"
+              [class.is-invalid]="loginForm.get('previousEmplyeer')?.invalid && loginForm.get('previousEmplyeer')?.touched"
+              required>
+          </div>
+          
+
+        </div>
+        <div class="divfirst" dir="auto">
+
+          <div class="form-group mt-2">
+            <label for="previousEmplyeerAddress">
+              {{ language === 'urdu' ? 'پچھلا ملازم کا پتہ:' : (language === 'pashto' ? 'د مخکینی دادا پته:' : 'Previous Employer Address') }}
+            </label>
+            <input class="form-control inputs" type="text" id="previousEmplyeerAddress" formControlName="previousEmplyeerAddress"
+              [class.is-invalid]="loginForm.get('previousEmplyeerAddress')?.invalid && loginForm.get('previousEmplyeerAddress')?.touched"
+              required>
+          </div>
+          
+
+          <div></div>
+        </div>
+
+
+
+
+
+        <div class="divfirst" dir="auto">
+          <div class="headers1">
+            {{ language === 'urdu' ? 'دیگر تفصیلات' : (language === 'pashto' ? 'دیگر معلومات' : 'OTHER DETAILS') }}
+          </div>
+          <div class="left-side">
+            <div class="form-group mt-2">
+              <label>
+                {{ language === 'urdu' ? 'کیا آپ کے پاس کبھی پاسپورٹ تھا؟' : (language === 'pashto' ? 'آیا تاسو په کوم پاسپورټ لرئ؟' : 'Have you ever had a passport?') }}
+                <span class="compulsory">*</span>
+              </label>
+              
+              <div class="radio-buttons">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" id="passportYes" value="yes"
+                    formControlName="havePassport" required>
+                  <label class="form-check-label" for="passportYes">
+                    {{ language === 'urdu' ? 'ہاں' : (language === 'pashto' ? 'هو' : 'Yes') }}
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" id="passportNo" value="no" formControlName="havePassport"
+                    required>
+                  <label class="form-check-label" for="passportNo">
+                    {{ language === 'urdu' ? 'نہیں' : (language === 'pashto' ? 'نه' : 'No') }}
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group mt-2" *ngIf="loginForm.get('havePassport')?.value === 'yes'">
+              <label for="previousPassport">
+                {{ language === 'urdu' ? 'پچھلا پاسپورٹ' : (language === 'pashto' ? 'پچھلا پاسپورټ' : 'Previous Passport') }}
+                <span class="compulsory">*</span>
+              </label>
+              
+              <input class="form-control inputs" type="text" id="previousPassport" formControlName="previousPassport"
+                [class.is-invalid]="loginForm.get('previousPassport')?.invalid && loginForm.get('previousPassport')?.touched"
+                required>
+            </div>
+
+            <div class="form-group mt-2" *ngIf="loginForm.get('havePassport')?.value === 'yes'">
+              <label for="issueDate">
+                {{ language === 'urdu' ? 'تاریخ اجرا' : (language === 'pashto' ? 'جا رخېدل تاریخ' : 'Issue Date') }}
+                <span class="compulsory">*</span>
+              </label>
+              <input class="form-control inputs" type="date" id="issueDate" formControlName="issueDate"
+                [class.is-invalid]="loginForm.get('issueDate')?.invalid && loginForm.get('issueDate')?.touched"
+                required>
+            </div>
+
+            <div class="form-group mt-2" *ngIf="loginForm.get('havePassport')?.value === 'yes'">
+              <label for="expiryDate">
+                {{ language === 'urdu' ? 'تاریخ خاتمہ' : (language === 'pashto' ? 'بایی رخیصل تاریخ' : 'Expiry Date') }}
+                <span class="compulsory">*</span>
+              </label>
+              <input class="form-control inputs" type="text" id="expiryDate" formControlName="expiryDate"
+                [class.is-invalid]="loginForm.get('expiryDate')?.invalid && loginForm.get('expiryDate')?.touched"
+                required>
+            </div>
+          </div>
+
+
+
+          <div class="right-side">
+            <div>
+              <div class="passportflex">
+                <div class="form-group mt-2">
+                  <label for="passportType">
+                    {{ language === 'urdu' ? 'پاسپورٹ کی قسم' : (language === 'pashto' ? 'د پاسپورټ ډول' : 'Passport Type') }}
+                    <span class="compulsory">*</span>
+                  </label>
+                  
+                  <select id="passportType" class="form-select inputs" formControlName="passportType"
+                    [class.is-invalid]="loginForm.get('passportType')?.invalid && loginForm.get('passportType')?.touched"
+                    required>
+                    <option value="" disabled selected>
+                      {{ language === 'urdu' ? 'منتخب کریں' : (language === 'pashto' ? 'غوره کړئ' : 'Select') }}
+                    </option>
+                    <option *ngFor="let pass of Passports" [value]="pass">
+                      {{ language === 'urdu' ? (pass === 'ordinary' ? 'عام' : (pass === 'diplomatic' ? 'سفارتی' : (pass
+                      === 'service' ? 'سروس' : (pass === 'special' ? 'خاص' : 'پاسپورټ')))) : (language === 'pashto' ?
+                      (pass === 'ordinary' ? 'عام' : (pass === 'diplomatic' ? 'سفارتي' : (pass === 'service' ? 'خدمت' :
+                      (pass === 'special' ? 'خصوصي' : 'پاسپورټ')))) : pass) }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group mt-2"
+                *ngIf="loginForm.get('passportType')?.value === 'diplomatic' || loginForm.get('passportType')?.value === 'service'">
+                <label for="jobTitle">
+                  {{ language === 'urdu' ? 'نوکری کا عنوان' : (language === 'pashto' ? 'دنده کارۍ عنوان' : 'Job Title')
+                  }}
+                  <span class="compulsory">*</span>
+                </label>
+                <input class="form-control inputs" type="text" id="jobTitle" formControlName="jobTitle"
+                  [class.is-invalid]="loginForm.get('jobTitle')?.invalid && loginForm.get('jobTitle')?.touched"
+                  required>
+              </div>
+            </div>
+
+
+
+          </div>
+
+
+        </div>
+
+        <div class="divfirst" dir="auto">
+          <div>
+            <div class="form-group mt-2">
+              <label>
+                {{ language === 'urdu' ? 'کیا آپ کے پاس کچھ ریکارڈ ہے؟' : (language === 'pashto' ? 'که غواړي څه ډول ستاسو له څوک لري؟' : 'Do you have a criminal record?') }}
+                <span class="compulsory">*</span>
+              </label>
+              
+              <div class="radio-buttons">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" id="criminalYes" value="yes"
+                    formControlName="haveCriminal" required (change)="updateValidation()">
+                  <label class="form-check-label" for="criminalYes">{{ language === 'urdu' ? 'ہاں' : (language ===
+                    'pashto' ? 'هو' : 'Yes') }}</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" id="criminalNo" value="no" formControlName="haveCriminal"
+                    required (change)="updateValidation()">
+                  <label class="form-check-label" for="criminalNo">{{ language === 'urdu' ? 'نہیں' : (language ===
+                    'pashto' ? 'نه' : 'No') }}</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group mt-2" *ngIf="loginForm.get('haveCriminal')?.value === 'yes'">
+              <label>
+                {{ language === 'urdu' ? 'براہ کرم تفصیلات فراہم کریں:' : (language === 'pashto' ? 'مهرباني وکړئ د څه تفصیلات ډکه کړئ:' : 'Please provide the details:') }}
+                <span class="compulsory">*</span>
+              </label>
+              <textarea class="form-control inputs" id="passportDetails" formControlName="passportDetails" rows="3"
+                placeholder="{{ language === 'urdu' ? 'براہ کرم تفصیلات فراہم کریں:' : (language === 'pashto' ? 'مهرباني وکړئ د څه تفصیلات ډکه کړئ:' : 'Please provide the details:') }}"
+                [class.is-invalid]="loginForm.get('haveCriminal')?.value === 'yes' && loginForm.get('passportDetails')?.invalid && loginForm.get('passportDetails')?.touched"
+                required></textarea>
+            </div>
+            
+          </div>
+
+
+
+        </div>
+
+        <!-- this is  -->
+      </div>
+
+      <div class="divfirst3" dir="auto">
+
+        <p class="language2">
+          <br>
+          {{ language === 'urdu' ? 'لندن: نوواک جوکووچ کہتا ہے کہ کارلوس الکاراز کے خلاف ان کی "آخری مقابلہ" جس میں تاریخ اور نسلی تبدیلی پر بحث ہو رہی ہے وہ دنیا کا دیکھ رہی ہوگی۔'
+            : (language === 'pashto' ? 'لندن: نوواک جوکووچ کې څوک په څوک تېرته کېدای شي، چې کارلوس الکاراز سره "آخري لومړی برید" يو اوږدوالي مقابله وي چې د تاريخ او نسلي تبديلې لرونکو څخه د هلته څه بې بېړو ګډون دی.' : 
+            'London: Novak Djokovic says the sporting world will be watching his "ultimate showdown" against Carlos Alcaraz, where history and a generational shift are at stake.' ) }}
+          {{ language === 'urdu' ? 'ڈیجوووچ کو کام کرنے کی کوشش ہو رہی ہے کہ آل انگلینڈ کلب میں راجر فیڈرر کی آٹھ عنوانوں کا ریکارڈ برابر کر دیں اور مارگرٹ کورٹ کے 24 گرینڈ سلیم کراؤنوں کا آل ٹائم مارک میچ کریں۔'
+            : (language === 'pashto' ? 'دجوووچ د آل انگلينډ کلب کې راجر فيډر کې آټه ات بڼه وکړې کېږي او مارګريټ کورټ تر ټولو 24 غرانډ سلامونو کښې د ټولو کچوونو تسلیم لري.' : 
+            'Djokovic is attempting to equal Roger Federer\'s record of eight titles at the All England Club and match Margaret Court\'s all-time mark of 24 Grand Slam crowns.') }}
+          -ADVERTISEMEN
+          {{ language === 'urdu' ? '2023 میں پہلے سے ہی آسٹریلین اوپن اور فرانسیسی اوپن کو کمپیٹ کرکے 36 سالہ میں صرف' : 
+            (language === 'pashto' ? 'د 2023 کې د استرالیايي اوپن او فرانسوي اوپن په ننه ګوند کېږي، د 36 کالو بچيال دا هره څه څوک په هیله څه په دی.' : 
+            'Having already pocketed the Australian Open and French Open in 2023, victory on Sunday will put the 36-year-old just') }}
+        </p>
+        
+        <div class="main2" dir="auto">
+          <div>
+            <div>
+              <img class="image-right"
+                [src]="selectedFile ? getObjectURL(selectedFile) : 'assets/images/blankimage.jpg'" alt=""
+                [ngStyle]="{ 'width.mm': '45', 'height.mm': '45' }">
+            </div>
+        
+            <label for="imageInput" class="custom-file-label btsof">
+              {{ language === 'urdu' ? 'تصویر کا انتخاب کریں' : (language === 'pashto' ? 'د انځور غوره کړئ' : 'Choose Image') }}
+            </label>
+            <input type="file" id="imageInput" accept="image/*" (change)="onFileSelected($event)" class="custom-file-input">
+          </div>
+          <div>
+            <label for="docxInput" class="custom-file-label files btsof">
+              {{ language === 'urdu' ? 'فائل کا انتخاب کریں' : (language === 'pashto' ? 'د فایل غوره کړئ' : 'Choose File') }}
+            </label>
+            <input type="file" id="docxInput" accept=".docx,.pdf" (change)="onDocxFileSelected($event)" class="custom-file-input">
+            <div *ngIf="selectedDocxFile">
+              <p class="filepragraph">
+                {{ language === 'urdu' ? 'فائل کامیابی سے منسلک کر دی گئی ہے' : (language === 'pashto' ? 'د فایل په بریاليتوب سره لمل شو' : 'The file has been attached successfully') }}
+              </p>
+              <div class="file-container">
+                <div class="file-icon">
+                  <!-- Display a file icon based on the file type -->
+                </div>
+                <p class="file-name">{{ selectedDocxFile.name }}</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+
+
+      </div>
+      <div class="divfirst" dir="auto">
+        <div></div>
+        <div *ngIf="errorMessage" class="filepragrapherror">
+          <p>{{ errorMessage }}</p>
+        </div>
+      </div>
+
+      <div class="divfirst2">
+        <div></div>
+        <div>
+          <div class="form-group" style="text-align: right;">
+            <button class="btn btn1 langs btn-primary mt-2" type="submit" [disabled]="loginForm.invalid">
+              <ng-container *ngIf="language === 'urdu'">اگلے</ng-container>
+              <ng-container *ngIf="language === 'pashto'">بل</ng-container>
+              <ng-container *ngIf="language === 'english'"> Submit </ng-container>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+      <div *ngIf="successMessage">
+        <p>{{ successMessage }}</p>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="isLoading" class="loader-overlay">
+    <div class="loader"></div>
+  </div>
+
+
+</div>

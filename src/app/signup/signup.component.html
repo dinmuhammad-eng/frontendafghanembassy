@@ -1,0 +1,105 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+
+  <div class="onex" style="background-image: url('assets/images/best5.jpg'); min-height: 100vh; height: auto;">
+  <div class="logo">
+    <img src="assets/images/yes.png" alt="Not loaded">
+</div>
+<div class="main">
+  <!-- [class.fade-out]="isLoading" -->
+  <div class="left-container">
+    <div class="ar " >
+   
+      1. Register yourself by entering the name , phone number and email and give the password
+      which you can remember .
+      <br>
+      2. After registering you should go back and then you log in with correct email and password
+      and then which will lead you to the next page where you are to give the required data.
+      <br>
+      3.You should give the requird data and those fields which are required else the submit button
+      will not be abled so therefore the required fields are to be filled.
+      <br>
+      4. After registering you should go back and then you log in with correct email and password
+      and then which will lead you to the next page where you are to give the required data.
+      
+  </div>
+</div>
+  <!-- Signup form -->
+  <div class="right-container">
+
+  <div class="forms">
+    <form [formGroup]="signupForm" (ngSubmit)="signup()">
+
+      
+
+      <div class="form-group mt-2">
+        <label for="password">Password:</label>
+        <div class="input-group">
+          <input class="form-control inputs" type="{{ passwordVisible ? 'text' : 'password' }}" id="password" formControlName="password"
+            placeholder="Enter your password"
+            [class.is-invalid]="signupForm.get('password')?.invalid && signupForm.get('password')?.touched &&
+          !signupForm.get('password')?.value" required>
+      
+          <button class="btn btn-outline-secondary eyeone" type="button" (click)="togglePasswordVisibility()">
+            <span  [class]="passwordVisible ? 'fas fa-eye' : 'fas fa-eye-slash'"></span>
+          </button>
+        </div>
+        <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched &&
+          signupForm.get('password')?.value" class="mt-2">
+          <span class="text-danger">Password should be at least 6 characters long</span>
+        </div>
+      </div>
+      
+      <div class="form-group mt-2">
+        <label for="confirmPassword">Confirm Password:</label>
+        <div class="input-group">
+          <input class="form-control inputs" type="{{ passwordVisibles ? 'text' : 'password' }}" id="confirmPassword"
+            formControlName="confirmPassword" placeholder="Confirm your password"
+            [class.is-invalid]="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched " required>
+      
+          <button class="btn btn-outline-secondary eyeone" type="button" (click)="togglePasswordVisibilityofcon()">
+            <span [class]="passwordVisibles ? 'fas fa-eye' : 'fas fa-eye-slash'"></span>
+          </button>
+        </div>
+        <div *ngIf="signupForm.get('confirmPassword')?.touched && signupForm.hasError('passwordMatch')" class="mt-2">
+          <span class="text-danger">Passwords do not match</span>
+        </div>
+      </div>
+
+      <div>
+        <re-captcha class="form-control mt-2 captch" formControlName="recaptchaReactive"
+          siteKey="6LdjgL0mAAAAAIJi7fGd9X9cILnLLC5Zl_UjWyvy"></re-captcha>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btns mt-2" type="submit" [disabled]="signupForm.invalid">Submit</button>
+      </div>
+    </form>
+
+    <!-- Display success message if available -->
+    <div *ngIf="successMessage" class="btnsof mt-4">
+      {{ successMessage }}
+      <button class="btn successed" (click)="navigateToResetPassword()">Log in </button>
+    </div>
+
+    <!-- Display error message if available -->
+    <div *ngIf="errorMessage" class="btnsof mt-4">
+      {{ errorMessage }}
+      
+    </div>
+    <div *ngIf="errorMessages" class="btnsof mt-4">
+      {{ errorMessages }}
+      <button class="btn successed" (click)="navigateToResetPassword()"> log in  </button>
+    </div>
+  </div>
+</div>
+  </div>
+  <div *ngIf="isLoading" class="loader-overlay">
+    <div class="loader"></div>
+  </div>
+</div>
+
+

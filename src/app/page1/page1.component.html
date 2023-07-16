@@ -1,0 +1,562 @@
+<div *ngIf="userType=='user'" style="background-image: url('assets/images/best5.jpg'); min-height: 100vh; height: auto;" >
+  <div class="logo">
+    <img src="assets/images/yes.png" alt="Not loaded">
+  </div>
+
+  <div class="lang">
+    <button class="btn  btn1" (click)="language = 'english'">English</button>
+    <button class="btn  btn2" (click)="language = 'pashto'">پښتو</button>
+    <button class="btn  btn3" (click)="language = 'urdu'">اردو</button>
+  </div>
+  <div class="language">
+    {{ language === 'urdu' ? 'مشین، سسٹم یا پروسیس کی تکمیل کے حصے کی خروجی کو ارتقاء دینے کے لئے الیکٹرانک سرکٹ میں تبدیلیوں پیدا کرنے یا خودکار کنٹرول آلہ میں خودکار اصلاحی کارروائی فراہم کرنے کے لئے' :
+      (language === 'pashto' ? 'وړونکی، داوت، یا پروسېس ته برخه د ورته په ماشين، نظام يا عمل ته ورته په بدلولو کې ارتقاء شوی خرڅلاو په اليکټرانکي سرکټ کې بدلونونه کړي او يا خپل چکلۍ کنټرول پېژندل کوونکي ته خپلي خپلخوا اړوند اصلاح کاري کوو' :
+      'The return to the input of a part of the output of a machine, system, or process as for producing changes in an electronic circuit that improve performance or in an automatic control device that provides self-corrective action') }}
+  </div>
+
+<div class="forms" >
+  
+    
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="main" >
+        <div class="divfirst">
+          <div class="headers1" dir="auto">
+            {{ language === 'urdu' ? 'ذاتی تفصیلات' : (language === 'pashto' ? 'شخصي تفصيلات' : 'PERSONAL DETAILS') }}
+          </div>
+          
+          <div class="form-group mt-2">
+            <label for="name">Name <span class="compulsory">*</span></label>
+            <input class="form-control inputs" type="text" id="name" formControlName="name"
+                   [class.is-invalid]="loginForm.get('name')?.invalid && loginForm.get('name')?.touched"
+                   required pattern='[a-zA-Z\s]+' maxlength="50">
+          </div>
+          
+          <div class="form-group mt-2">
+            <label for="Pname" style="direction: rtl; text-align: right; display: block;">نوم/نام <span class="compulsory">*</span></label>
+            <input class="form-control inputs" type="text" id="Pname" formControlName="Pname"
+                   [class.is-invalid]="loginForm.get('Pname')?.invalid && loginForm.get('Pname')?.touched"
+                   required pattern="[\u0600-\u06FF\s]+" maxlength="50"
+                   dir="rtl">
+          </div>
+          
+          
+  </div>
+  <div class="divfirst">
+    
+    
+    <div class="form-group mt-2">
+      <label for="lastName">Last Name  <span class="compulsory">*</span></label>
+      <input class="form-control inputs" type="text" id="lastName" formControlName="lastName"
+             [class.is-invalid]="loginForm.get('lastName')?.invalid && loginForm.get('lastName')?.touched"
+             required pattern='[a-zA-Z\s]+' maxlength="50"
+             >
+      
+    </div>
+
+    
+   
+    <div class="form-group mt-2">
+      <label for="PlastName" style="direction: rtl; text-align: right; display: block;">نوم/شخصي نوم <span class="compulsory">*</span></label>
+      <input class="form-control inputs" type="text" id="PlastName" formControlName="PlastName"
+             [class.is-invalid]="loginForm.get('PlastName')?.invalid && loginForm.get('PlastName')?.touched"
+             required pattern="[\u0600-\u06FF\s]+" maxlength="50"
+             dir="rtl">
+      
+    </div>
+  </div>
+     <div class="divfirst" dir="auto">
+      <div class="form-group mt-2">
+        <label for="fatherFulName">{{ language === 'urdu' ? 'والد کا مکمل نام:' : (language === 'pashto' ? 'د پلار کمل نوم:' : 'Father Full Name ') }}<span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="text" id="fatherFulName" formControlName="fatherFulName"
+          
+          [class.is-invalid]="loginForm.get('fatherFulName')?.invalid && loginForm.get('fatherFulName')?.touched" required>
+      </div>
+     
+      <div class="form-group mt-2" >
+        <label for="grandFatherName">{{ language === 'urdu' ? 'نام دادا:' : (language === 'pashto' ? 'د دادا نوم:' : 'Grand Father Name ') }}<span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="text" id="grandFatherName" formControlName="grandFatherName"
+          [class.is-invalid]="loginForm.get('grandFatherName')?.invalid && loginForm.get('grandFatherName')?.touched"required >
+      </div>
+      
+      
+    </div>
+
+    <div class="divfirst" dir="auto">
+      
+      
+      <div class="form-group mt-2">
+        <label for="familyName">{{ language === 'urdu' ? 'نام خاندانی' : (language === 'pashto' ? 'د خانداني نوم' : 'Family Name ') }} <span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="text" id="familyName" formControlName="familyName"
+          
+          [class.is-invalid]="loginForm.get('familyName')?.invalid && loginForm.get('familyName')?.touched" required>
+      </div>
+
+    
+      <div>
+        <div class="form-group mt-2" dir="auto">
+          <label for="cnic">
+            {{ language === 'urdu' ? 'شناختی کارڈ نمبر' : (language === 'pashto' ? 'د شناختي کارت نمبر' : 'CNIC ') }}
+            <span class="compulsory">*</span>
+          </label>
+          <input class="form-control inputs" type="text" id="cnic" formControlName="cnic" 
+            [class.is-invalid]="loginForm.get('cnic')?.invalid && loginForm.get('cnic')?.touched" required maxlength="10" >
+        </div>
+      </div>
+
+      
+
+    </div>
+    <div class="divfirst">
+
+      <div class="form-group mt-2">
+  <label for="dob">Date of Birth <span class="compulsory">*</span></label>
+  <input class="form-control inputs" type="text" id="dob" formControlName="dob"
+    [class.is-invalid]="loginForm.get('dob')?.invalid && loginForm.get('dob')?.touched"
+    placeholder="Day/Month/Year" required pattern="^(?:\d{1,2}[/]\d{1,2}(?:[/]\d{4})?)?$"
+    (input)="formatDateInput($event.target)">
+</div>
+
+      
+    
+    
+      
+      
+      <div class="form-group mt-2">
+        <label for="Pdob" style="direction: rtl; text-align: right; display: block;">د زېږېدنې لمریزه نېټه <span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="text" id="Pdob" formControlName="Pdob"
+          [class.is-invalid]="loginForm.get('Pdob')?.invalid && loginForm.get('Pdob')?.touched"
+          style="direction: rtl; text-align: right;"placeholder="کال/میاشت/ورځ" required pattern="^(?:\d{1,2}[/]\d{1,2}(?:[/]\d{4})?)?$"
+          (input)="formatDateInput($event.target)" >
+      </div>
+    </div>
+    
+
+    <div class="divfirst" dir="auto">
+    
+      <div class="form-group mt-2">
+        <label for="placeOfBirth">{{ language === 'urdu' ? 'جائے پیدائش:' : (language === 'pashto' ? 'د پیدائش جاي:' : 'Place of Birth ') }} <span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="text" id="placeOfBirth" formControlName="placeOfBirth"
+          [class.is-invalid]="loginForm.get('placeOfBirth')?.invalid && loginForm.get('placeOfBirth')?.touched" required>
+      </div>
+     
+      <div class="form-group mt-2">
+        <label for="country">{{ language === 'urdu' ? 'ملک' : (language === 'pashto' ? 'ملک' : 'Country ') }} <span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="text" id="country" formControlName="country" 
+          [class.is-invalid]="loginForm.get('country')?.invalid && loginForm.get('country')?.touched" required>
+      </div>
+      </div>
+
+      <div class="divfirst" dir="auto">
+
+      
+
+      <div class="form-group mt-2">
+        <label for="province">{{ language === 'urdu' ? 'صوبہ:' : (language === 'pashto' ? 'ولايت:' : 'Province ') }} <span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="text" id="province" formControlName="province" 
+          [class.is-invalid]="loginForm.get('province')?.invalid && loginForm.get('province')?.touched" required>
+      </div>
+      <div class="form-group mt-2">
+        <label for="district">{{ language === 'urdu' ? 'ضلع' : (language === 'pashto' ? 'ولسوالی' : 'District ') }} <span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="text" id="district" formControlName="district" 
+          [class.is-invalid]="loginForm.get('district')?.invalid && loginForm.get('district')?.touched" required>
+      </div>
+
+    </div>
+
+    <div class="divfirst" dir="auto">
+
+     
+      <div class="form-group mt-2" >
+        <label for="village">{{ language === 'urdu' ? 'گاؤں:' : (language === 'pashto' ? 'ګاو:' : 'Village ') }}<span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="text" id="village" formControlName="village"
+          [class.is-invalid]="loginForm.get('village')?.invalid && loginForm.get('village')?.touched" required>
+
+      </div>
+      <div class="form-group mt-2">
+        <label for="countryofResidence">{{ language === 'urdu' ? 'ملک میں رہنے کی' : (language === 'pashto' ? 'ځمکه په امله کې' : 'Country of Residence ') }}<span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="text" id="countryofResidence" formControlName="countryofResidence"
+          [class.is-invalid]="loginForm.get('countryofResidence')?.invalid && loginForm.get('countryofResidence')?.touched" required>
+      </div>
+    
+    </div>
+
+    <div class="divfirst" dir="auto">
+      <div class="form-group mt-2">
+        <label for="otherNationalities">{{ language === 'urdu' ? 'دوسری قومیتیں' : (language === 'pashto' ? 'بل نړیوالی نړیږی' : 'Other Nationalities ') }}<span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="text" id="otherNationalities" formControlName="otherNationalities" 
+          [class.is-invalid]="loginForm.get('otherNationalities')?.invalid && loginForm.get('otherNationalities')?.touched"required >
+      </div>
+      <div class="divfirst2">
+        <div class="form-group">
+          <label for="gender">
+            {{ language === 'urdu' ? 'جنس' : (language === 'pashto' ? 'جنسیت:' : 'Gender ') }}<span class="compulsory">*</span>
+          </label>
+          <select id="gender" class="form-select inputs" formControlName="gender"
+            [class.is-invalid]="loginForm.get('gender')?.invalid && loginForm.get('gender')?.touched"required >
+            <option value="" disabled selected>
+              {{ language === 'urdu' ? 'انتخاب کریں' : (language === 'pashto' ? 'غوره کړئ' : 'Select') }}
+            </option>
+            <option *ngFor="let gender of genders" [value]="gender">
+              {{ language === 'urdu' ? (gender === 'male' ? 'مرد' : (gender === 'female' ? 'عورت' : 'نامعلوم')) : (language === 'pashto' ? (gender === 'male' ? 'ښځینه' : (gender === 'female' ? 'ښځینه' : 'نامعلوم')) : gender) }}
+            </option>
+          </select>
+        </div>
+        
+          <div class="form-group">
+            <label for="children">
+              {{ language === 'urdu' ? 'زیر 18 سال کا بچہ' : (language === 'pashto' ? 'زیر 18 سال د کور' : 'Child (Under 18 years) ') }}<span class="compulsory">*</span>
+            </label>
+            <select id="children" class="form-select inputs" formControlName="children" 
+              [class.is-invalid]="loginForm.get('children')?.invalid && loginForm.get('children')?.touched" required>
+              <option value="" disabled selected>
+                {{ language === 'urdu' ? 'انتخاب کریں' : (language === 'pashto' ? 'غوره کړئ' : 'Select') }}
+              </option>
+              <option *ngFor="let option of childs" [value]="option">{{ option }}</option>
+            </select>
+          </div>
+          </div>
+
+
+
+     
+
+    </div>
+
+    <div class="divfirst" dir="auto">
+      <div class="form-group mt-2">
+        <label for="hieght">{{ language === 'urdu' ? 'ای میل پتہ' : (language === 'pashto' ? 'برېښناليک پتہ' : 'hieght ') }}<span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="text" id="hieght" formControlName="hieght" 
+          [class.is-invalid]="loginForm.get('hieght')?.invalid && loginForm.get('hieght')?.touched"required >
+      </div>
+      
+      <div class="divfirst2" dir="auto">
+        <div class="form-group">
+          <label for="materialStatus">
+            {{ language === 'urdu' ? 'ازدواجی حالت' : (language === 'pashto' ? 'ازدواجي حالت' : 'Marital Status ') }} <span class="compulsory">*</span>
+          </label>
+          <select id="materialStatus" class="form-select inputs" formControlName="materialStatus"
+            [class.is-invalid]="loginForm.get('materialStatus')?.invalid && loginForm.get('materialStatus')?.touched"required >
+            <option value="" disabled selected>
+              {{ language === 'urdu' ? 'انتخاب کریں' : (language === 'pashto' ? 'غوره کړئ' : 'Select') }}
+            </option>
+            <option *ngFor="let status of materialStats" [value]="status">
+              {{ language === 'urdu' ? (status === 'widow' ? 'بیوہ' : status === 'single' ? 'تنها' : status === 'engaged' ? 'منگیت شدہ' : status === 'married' ? 'شادی شدہ' : status === 'divorced' ? 'طلاق یافتہ' : status === 'separated' ? 'الگ ہو گئے' : '') : (language === 'pashto' ? (status === 'widow' ? 'بیاه ورځپاڼه' : status === 'single' ? 'تنها' : status === 'engaged' ? 'منګیت شوی' : status === 'married' ? 'په شوی وړ شوی' : status === 'divorced' ? 'طلاق ورکړل شوی' : status === 'separated' ? 'جلا وړ شوی' : '') : status) }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="hairColors">
+            {{ language === 'urdu' ? 'بالوں کے رنگ' : (language === 'pashto' ? 'ګړنو رنګ' : 'Hair colors ') }} <span class="compulsory">*</span>
+          </label>
+          <select id="hairColors" class="form-select inputs" formControlName="hairColurs" 
+            [class.is-invalid]="loginForm.get('hairColurs')?.invalid && loginForm.get('hairColurs')?.touched"required>
+            <option value="" disabled selected>
+              {{ language === 'urdu' ? 'انتخاب کریں' : (language === 'pashto' ? 'غوره کړئ' : 'Select') }}
+            </option>
+            <option *ngFor="let status of haircolors" [value]="status">
+              {{ language === 'urdu' ? (status === 'black' ? 'سیاہ' : (status === 'blonde' ? 'گوری' : (status === 'brown' ? 'بھوری' : (status === 'red' ? 'سرخ' : (status === 'grey' ? 'سرمئی' : (status === 'brunette' ? 'برونیٹ' : status)))))) : (language === 'pashto' ? (status === 'black' ? 'تورې' : (status === 'blonde' ? 'څوړندی' : (status === 'brown' ? 'ګاډی' : (status === 'red' ? 'سورې' : (status === 'grey' ? 'سپن' : (status === 'brunette' ? 'بړنۍ' : status)))))) : status) }}
+            </option>
+          </select>
+        </div>
+       
+      </div>
+     
+
+    </div>
+    <div class="divfirst" dir="auto">
+      <div class="divfirst2">
+      <div class="form-group">
+        <label for="eyeColors">
+          {{ language === 'urdu' ? 'بالوں کے رنگ' : (language === 'pashto' ? 'ګړنو رنګ' : 'Eye colors ') }}<span class="compulsory">*</span>
+        </label>
+        <select id="eyeColors" class="form-select inputs" formControlName="eyeColor"
+          [class.is-invalid]="loginForm.get('eyeColor')?.invalid && loginForm.get('eyeColor')?.touched" required>
+          <option value="" disabled selected>
+            {{ language === 'urdu' ? 'انتخاب کریں' : (language === 'pashto' ? 'غوره کړئ' : 'Select') }}
+          </option>
+          <option *ngFor="let color of eyecolors" [value]="color">
+            {{ language === 'urdu' ? (color === 'blue' ? 'نیلا' : (color === 'brown' ? 'بھورا' : (color === 'green' ? 'سبز' : (color === 'grey' ? 'سرمئی' : (color === 'hazel' ? 'ہزل' : (color === 'other' ? 'دیگر' : color)))))) : (language === 'pashto' ? (color === 'blue' ? 'ازرق' : (color === 'brown' ? 'پښ' : (color === 'green' ? 'اختراعی' : (color === 'grey' ? 'سپن' : (color === 'hazel' ? 'قرنی' : (color === 'other' ? 'بل' : color)))))) : color) }}
+          </option>
+        </select>
+      </div>
+    </div>        
+      <div></div>
+</div>
+   
+
+      <div class="divfirst" dir="auto">
+        <div class="headers1" dir="auto">
+          {{ language === 'urdu' ? 'رابطہ کی تفصیلات' : (language === 'pashto' ? 'رابطې معلومات' : 'CONTACT DETAILS') }}
+        </div>
+        
+        <div class="form-group mt-2">
+          <label for="currentAddress">{{ language === 'urdu' ? 'موجودہ پتہ' : (language === 'pashto' ? 'موجودی پتہ' : 'Current Address ') }}<span class="compulsory">*</span></label>
+          <input class="form-control inputs" type="text" id="currentAddress" formControlName="currentAddress" 
+            [class.is-invalid]="loginForm.get('currentAddress')?.invalid && loginForm.get('currentAddress')?.touched" required>
+        </div>
+        <div class="form-group mt-2">
+          <label for="previousAddress">{{ language === 'urdu' ? 'پچھلے پتہ' : (language === 'pashto' ? 'سابقہ پتہ' : 'Previous Address ') }} <span class="compulsory">*</span></label>
+          <input class="form-control inputs" type="text" id="previousAddress" formControlName="previousAddress" 
+            [class.is-invalid]="loginForm.get('previousAddress')?.invalid && loginForm.get('previousAddress')?.touched"required >
+        </div>
+     
+    </div>
+
+    <div class="divfirst" dir="auto">
+      
+
+      <div class="form-group mt-2">
+        <label for="emailAddress">{{ language === 'urdu' ? 'ای میل پتہ' : (language === 'pashto' ? 'برېښناليک پتہ' : 'Email Address ') }} <span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="text" id="emailAddress" formControlName="emailAddress" 
+          [class.is-invalid]="loginForm.get('emailAddress')?.invalid && loginForm.get('emailAddress')?.touched" required>
+      </div>
+      <div class="form-group mt-2">
+        <label for="mobileAddress">{{ language === 'urdu' ? 'کام کا ٹیلیفون' : (language === 'pashto' ? 'دندہ تیلیفون' : 'mobile Number ') }}<span class="compulsory">*</span></label>
+        <input class="form-control inputs" type="number" id="mobileAddress" formControlName="mobileAddress" 
+          [class.is-invalid]="loginForm.get('mobileAddress')?.invalid && loginForm.get('mobileAddress')?.touched"required >
+      </div>
+    </div>
+
+    
+
+      
+
+     
+
+     <div class="divfirst">
+      <div *ngIf="exeeded" class="alert custom-alert alert-success headers mt-4">
+        {{ exeeded }}
+      </div>
+      <div></div>
+      
+      <div class="form-group lastbtn" >
+        <button class="btn btn1 langs  mt-2" type="submit" [disabled]="loginForm.invalid">
+          <ng-container *ngIf="language === 'urdu'">اگلے</ng-container>
+          <ng-container *ngIf="language === 'pashto'">بل</ng-container>
+          <ng-container *ngIf="language === 'english'">Next</ng-container>
+        </button>
+      </div>
+
+      
+       
+    
+
+     </div>
+    
+    </div>
+    </form>
+  
+  
+    <div *ngIf="isLoading" class="loader-overlay">
+      <div class="loader"></div>
+    </div>
+  </div>
+</div>
+<div *ngIf="userType=='superadmin'">
+  this is good ? 
+</div>
+<!-- this is the record one  -->
+<div class="onex" style="background-image: url('assets/images/best5.jpg'); min-height: 100vh; height: auto;" *ngIf="userType=='admin'">
+  <div class="find" *ngIf="userType=='admin'">
+    <form [formGroup]="loginForm" (ngSubmit)="onSearch()">
+      <input type="text" formControlName="id" placeholder="Enter ID">
+      <button type="submit">Search</button>
+    </form>
+  
+    <ng-container *ngIf="userData">
+      <table class="custom-table" *ngIf="userData.id !== null && userData.id !== undefined">
+        <thead *ngIf="userData.id">
+          <tr>
+            <th>ID</th>
+            <th>CNIC</th>
+            <th>Name</th>
+            <th>Family Name</th>
+            <th>Given Name</th>
+            <th>Father's Full Name</th>
+            <th>Grandfather Name</th>
+            <th>Material Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ userData?.id }}</td>
+            <td>{{ userData?.cnic }}</td>
+            <td>{{ userData?.name }}</td>
+            <td>{{ userData?.familyName }}</td>
+            <td>{{ userData?.givenName }}</td>
+            <td>{{ userData?.fatherFulName }}</td>
+            <td>{{ userData?.grandFatherName }}</td>
+            <td>{{ userData?.materialStatus }}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <div *ngIf="userData.id === null">
+        <div class="messageOfSesrch">
+        {{ userData?.message }}
+      </div>
+      </div>
+    </ng-container>
+  </div>
+  
+  
+  
+  <!-- <div>
+    <button *ngIf="userType=='admin'">View Submissions</button> -->
+    
+    <div class="theadmin" *ngIf="userType=='admin'">
+      <div class="headone" *ngIf="userType=='admin'">
+        <h4>The complete records of each person</h4>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover custom-table">
+          <tbody>
+            <tr>
+              <th>Field</th>
+              <th>Value</th>
+              <th>Field</th>
+              <th>Value</th>
+              <th>Field</th>
+              <th>Value</th>
+            </tr>
+            <ng-container *ngFor="let user of userData">
+              <tr>
+                <td>PlastName</td>
+                <td>{{ user.PlastName }}</td>
+                <td>Pname</td>
+                <td>{{ user.Pname }}</td>
+                <td>Children</td>
+                <td>{{ user.children }}</td>
+              </tr>
+              <tr>
+                <td>CNIC</td>
+                <td>{{ user.cnic }}</td>
+                <td>Converted Date</td>
+                <td>{{ user.convertedDate }}</td>
+                <td>Converted Datep</td>
+                <td>{{ user.covnertedDatep }}</td>
+              </tr>
+              <tr>
+                <td>Country</td>
+                <td>{{ user.country }}</td>
+                <td>Country of Residence</td>
+                <td>{{ user.countryofResidence }}</td>
+                <td>Current Address</td>
+                <td>{{ user.currentAddress }}</td>
+              </tr>
+              <tr>
+                <td>District</td>
+                <td>{{ user.district }}</td>
+                <td>Email</td>
+                <td>{{ user.email }}</td>
+                <td>Email Address</td>
+                <td>{{ user.emailAddress }}</td>
+              </tr>
+              <tr>
+                <td>Expiry Date</td>
+                <td>{{ user.expiryDate }}</td>
+                <td>Eye Color</td>
+                <td>{{ user.eyeColor }}</td>
+                <td>Family Name</td>
+                <td>{{ user.familyName }}</td>
+              </tr>
+              <tr>
+                <td>Father Full Name</td>
+                <td>{{ user.fatherFulName }}</td>
+                <td>Fax</td>
+                <td>{{ user.fax }}</td>
+                <td>Gender</td>
+                <td>{{ user.gender }}</td>
+              </tr>
+              <tr>
+                <td>Given Name</td>
+                <td>{{ user.givenName }}</td>
+                <td>Grandfather Name</td>
+                <td>{{ user.grandFatherName }}</td>
+                <td>Hair Colors</td>
+                <td>{{ user.hairColurs }}</td>
+              </tr>
+              <tr>
+                <td>Have Criminal</td>
+                <td>{{ user.haveCriminal }}</td>
+                <td>Have Passport</td>
+                <td>{{ user.havePassport }}</td>
+                <td>Height</td>
+                <td>{{ user.hieght }}</td>
+              </tr>
+              <tr>
+                <td>ID</td>
+                <td>{{ user.id }}</td>
+                <td>Issue Date</td>
+                <td>{{ user.issueDate }}</td>
+                <td>Job Title</td>
+                <td>{{ user.jobTitle }}</td>
+              </tr>
+              <tr>
+                <td>Last Name</td>
+                <td>{{ user.lastName }}</td>
+                <td>Material Status</td>
+                <td>{{ user.materialStatus }}</td>
+                <td>Mobile Address</td>
+                <td>{{ user.mobileAddress }}</td>
+              </tr>
+              <tr>
+                <td>Name</td>
+                <td>{{ user.name }}</td>
+                <td>Other Nationalities</td>
+                <td>{{ user.otherNationalities }}</td>
+                <td>Others Distinguishing</td>
+                <td>{{ user.othersDistangushing }}</td>
+              </tr>
+              <tr>
+                <td>Passport Details</td>
+                <td>{{ user.passportDetails }}</td>
+                <td>Passport Type</td>
+                <td>{{ user.passportType }}</td>
+                <td>Path</td>
+                <td>{{ user.path }}</td>
+              </tr>
+              <tr>
+                <td>Place of Birth</td>
+                <td>{{ user.placeOfBirth }}</td>
+                <td>Previous Address</td>
+                <td>{{ user.previousAddress }}</td>
+                <td>Previous Passport</td>
+                <td>{{ user.previousPassport }}</td>
+              </tr>
+              <tr>
+                <td>Province</td>
+                <td>{{ user.province }}</td>
+                <td>User ID</td>
+                <td>{{ user.userId }}</td>
+                <td>Village</td>
+                <td>{{ user.village }}</td>
+              </tr>
+              <tr>
+                <td>Work Telephone</td>
+                <td>{{ user.workTelephone }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="line"> <hr> New...</td>
+
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    
+    
+    
+    
+    
+    <!-- <button class="delete-button" (click)="deleteStudent(userData.id)">
+      <span class="delete-icon">Delete</span>
+    </button> -->
+    
+    <!-- <button *ngIf="!(userType === 'admin')">View Submissions</button> -->
+    <!-- <thead *ngIf="userType=='admin'"> the complete records  -->
+  <!-- </div> -->
+</div>

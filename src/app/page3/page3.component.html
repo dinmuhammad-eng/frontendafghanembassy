@@ -1,0 +1,51 @@
+<div #pageContent>
+<div *ngIf="record && record.length > 0" style="background-image: url('assets/images/best5.jpg'); min-height: 100vh; height: auto;">
+  <div class="logo">
+    <img src="assets/images/yes.png" alt="Not loaded">
+  </div>
+  <div class="language">
+    <div *ngFor="let data of record">
+      <p>
+        <span class="sp">Congratulations! </span> You, <span class="sp"> "{{ data.name }}" </span> son/daughter of <span class="sp"> "{{ data.fatherFulName }}" </span> have successfully registered for an online passport.
+        Your CNIC <span class="sp"> "{{ data.cnic }}" </span> has been recorded, and your registration ID is <span class="spx"> "{{ data.categoryId }}"</span>.
+        We will notify you to come for your appointment at the Afghan Embassy <span class="sp">05-Jun-2030</span>  in Islamabad.
+        
+        Thank you for choosing our online passport service. We look forward to serving you efficiently and providing you
+        with a seamless experience.
+        
+        If you have any questions or require further assistance, please don't hesitate to contact our support team.
+      </p>
+    </div>
+    <div>
+      <div>
+        Contact:  0316787221,
+        <br>
+        Embassy Address:
+        Lauqman Hakim Road, Islamabad
+        <br>
+        Embassy Operating Hours:
+        Monday to Friday: 9:00 AM - 4:00 PM
+      </div>
+      <div class="one2">
+        <br>
+        <p>
+          <span>NOTE:</span> The registered body along with fingerprints and required documents should be present!
+        </p>
+      </div>
+    </div>
+    <div class="btnsflex">
+      <div></div>
+      <div>
+    <div class="download-button">
+      <button class="custom-button" (click)="downloadPage()">
+        <i class="bi bi-download "></i> Download
+      </button>
+    </div>
+    </div>
+  </div>
+    
+  </div>
+</div>
+
+  <!-- Content of the page -->
+</div>

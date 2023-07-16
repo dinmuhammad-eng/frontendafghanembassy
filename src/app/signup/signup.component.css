@@ -1,0 +1,165 @@
+
+.main {
+  display: flex;
+  gap: 20px;
+}
+
+.left-container {
+  flex: 1;
+}
+
+.right-container {
+  flex: 1;
+  margin-top: 1.2rem;
+}
+
+
+
+  .logo img{
+    width: 24rem;
+    margin-left: 4.7rem;
+    margin-top: 2.5rem;
+  
+  }
+  .onex{
+    padding-bottom: 7%;
+  }
+
+
+  .ar{
+  
+    border-right: 1px solid black;
+    padding: 30px;
+    font-weight: 480;
+    width: 35rem;
+    margin-left: 8.4rem;
+    margin-top: 4.8rem;
+    background: transparent;
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+
+.forms{
+  margin-right: 16rem;
+  margin-left: 0.6rem;
+  margin-top: 4.3rem;
+  
+  
+}
+.forms input{
+  padding-right: 0rem;
+  border-radius: 1px;
+}
+.inputs {
+  box-shadow: none;
+}
+.successed{
+  margin-top: -3px;
+  margin-left: -12px;
+  color: #1080f0;
+
+}
+.custom-alert{
+  border-radius: 1px;
+  background-color: transparent;
+  border: 1px solid #1d4581fc !important;
+}
+.btnsof{
+  border-radius: 1px;
+  background-color: transparent;
+  padding-left: 38px;
+  border-bottom: 1px solid blue !important;
+}
+.inputs:focus {
+  box-shadow: none;
+  border-color: #1080f0;
+}
+.captch{
+  border-radius: 0;
+}
+.eyeone{
+  border-radius: 0;
+  width: 2.5rem;
+  border: 1px solid #6b6b6b24;
+  border-left: none;
+}
+.btns{
+  border-radius: 1px;
+  background-color: #1d4581fc !important;
+  color: white;
+  
+}
+.btns:hover{
+  background-color: #292986;
+  border: 1px solid #292986;
+}
+
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+@media screen and (max-width: 660px) {
+  .main {
+    display: block;
+  }
+  .ar {
+    margin-top: 9%;
+    border-right: 1px solid black;
+    padding: 30px;
+    background: transparent;
+    font-weight: 400;
+    width: 28rem;
+    margin-left: 1.3rem;
+    margin-bottom: 9%;
+  }
+  .logo img {
+    width: 24rem;
+    margin-left: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .forms {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    margin-top: 4.3rem;
+  }
+  .forms input {
+    padding-right: 3rem;
+    border-radius: 0;
+  }
+  .btnsof{
+    padding-left: 79px; 
+  }
+  .eyeone {
+    border-radius: 0;
+    width: 2.5rem;
+    border: 1px solid #6b6b6b24;
+    border-left: none;
+  }
+}
