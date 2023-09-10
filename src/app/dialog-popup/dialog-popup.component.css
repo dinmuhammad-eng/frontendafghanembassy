@@ -6,7 +6,7 @@
     z-index: 9999;
     background-color: #092562f7;
     padding: 25px;
-    height: 53%;
+    height: 57%;
     border-radius: 5px;
     color: white;
     transition: transform 0.5s ease-in-out;
@@ -30,7 +30,7 @@
     width: 73px;
     margin-right: 5px;
     margin-top: -10px;
-    margin-bottom: 8px;
+    margin-bottom: 14px;
     margin-left: 5px;
   }
   
@@ -48,7 +48,15 @@
     border-radius: 0;
 
   }
-  
+  .noteof{
+    font-size: 1.2rem;
+  font-weight: 800;
+  }
+  .linked{
+    border: none;
+    outline: none;
+    border-radius: 0;
+  }
   /* Media query for screens with a maximum width of 660px */
   @media screen and (max-width: 660px) {
     .dialog-popup {

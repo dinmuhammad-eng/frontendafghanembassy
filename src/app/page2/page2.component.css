@@ -6,6 +6,11 @@
 }
 .btsof{
   background-color: #1d4581fc !important;
+  transition: transform 0.4s;
+}
+.btsof:hover{
+
+  background-color: #10108d !important;
 }
 .btsof1{
   background-color: #1d4581fc ;
@@ -70,13 +75,7 @@
   margin-top: 5px;
 }
 
-.files{
-  margin-top: 1rem;
-  padding-left: 2.7rem !important;
-  padding-right: 2.77rem !important;
-   
-    margin-top: 204px;
-}
+
 /* .form-group {
   margin-top: 2rem;
 }
@@ -88,6 +87,43 @@
 .form-check-input {
   margin-right: 5px;
 } */
+.flexlastdocx {
+  display: flex;
+  flex-direction: column;
+}
+
+.leftside1 {
+  flex: 1;
+}
+
+.leftside2 {
+  flex: 1;
+  
+}
+.files{
+  margin-top: 46.1px !important;
+  padding-left: 2.7rem !important;
+  padding-right: 2.77rem !important;
+  
+}
+
+.file-icon img {
+  /* width: 197px;
+  height: 173px;
+  margin-top: 24px;
+  margin-bottom: -39px;
+  margin-left: -16px; */
+      width: 68px;
+    height: 57px;
+    margin-top: 139px;
+    margin-bottom: -39px;
+    margin-left: -6px;
+}
+.success-messages{
+  margin-top: 4px;
+
+  padding: 0px 3px;
+}
 
 
 .language{
@@ -127,6 +163,7 @@
   margin-right: 6px;
   border-radius: 2px;
   transition: transform 0.4s;
+  
 }
 .btn1:hover {
   transform: scale(1.1);

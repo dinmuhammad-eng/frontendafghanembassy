@@ -1,14 +1,13 @@
-
-<div [class.half-opacity]="isDialogOpen" style="background-image: url('assets/images/best5.jpg'); min-height: 100vh; height: auto;">
+<!-- <div [class.half-opacity]="isDialogOpen" style="background-image: url('assets/images/best5.jpg'); min-height: 100vh; height: auto;"></div> -->
+<div [class.half-opacity]="isDialogOpen" >
   <div class="logo">
     <img src="assets/images/yes.png" alt="Not loaded">
   </div>
 
   <div class="ar " [class.fade-out]="isLoading" [class.disable-hover]="disableHover">
-    Welcome ! to the online passport system of embassy of Afghanistan where you can register
-    yourself
-    and then you can given time where to visit just to have finger and payment so please you should
-    not pay your payment online , on the day of the given time you will be.
+    Welcome to the online passport system of the Embassy of Afghanistan! Here, you can register yourself and
+     schedule an appointment for your passport .
+     Please do not pay your fee online. You will be able to do so on the day of your appointment.
     <br> <br>
     ‌د استناف محکمې یوه قاضي د پرېکړې د اورولو پرمهال وویل "دا ګواښ ريښتنی دی، چې ښايي‌ کډوال له روانډا نه بېرته خپلو
     هېوادونو ته واستول شي او هلته یې ژوند له خطر سره ممخ شي.‌ داسې حال
@@ -19,8 +18,8 @@
   </div>
 
   <div class="home" [class.fade-out]="isLoading">
-    <button class="btn1" [class.disable-hover]="isDialogOpen" (click)="signup()"> Sign up </button>
-    <button class="btn2" [class.disable-hover]="isDialogOpen" (click)="logIn()"> Log in </button>
+    <button class="btn1" [class.disable-hover]="isDialogOpen" (click)="signup()"> Register</button>
+    <button class="btn2" [class.disable-hover]="isDialogOpen" (click)="logIn()"> Log In </button>
   </div>
   
   

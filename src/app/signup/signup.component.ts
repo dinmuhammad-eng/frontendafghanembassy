@@ -57,7 +57,7 @@ export class SignupComponent implements OnInit {
       () => {
         console.log('Data sent to backend successfully');
         this.signupForm.reset();
-        this.successMessage = 'You have signed up! Please proceed to';
+        this.successMessage = 'You have signed up! to log in go';
         this.errorMessage = ''; // Clear any previous error message
       },
       (error) => {

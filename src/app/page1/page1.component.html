@@ -1,4 +1,4 @@
-<div *ngIf="userType=='user'" style="background-image: url('assets/images/best5.jpg'); min-height: 100vh; height: auto;" >
+<div *ngIf="userType=='user'">
   <div class="logo">
     <img src="assets/images/yes.png" alt="Not loaded">
   </div>
@@ -99,7 +99,7 @@
             <span class="compulsory">*</span>
           </label>
           <input class="form-control inputs" type="text" id="cnic" formControlName="cnic" 
-            [class.is-invalid]="loginForm.get('cnic')?.invalid && loginForm.get('cnic')?.touched" required maxlength="10" >
+            [class.is-invalid]="loginForm.get('cnic')?.invalid && loginForm.get('cnic')?.touched" required  >
         </div>
       </div>
 
@@ -352,51 +352,149 @@
     </div>
   </div>
 </div>
-<div *ngIf="userType=='superadmin'">
-  this is good ? 
+<div *ngIf="userType=='superadmin'" >
+  <div class="logo">
+    <img src="assets/images/yes.png" alt="Not loaded">
+  </div>
+  <div class="superadminbtns">
+    <div>
+      <button class="btn btn-primary superadminbtns1"> Daily Report </button>
+    </div>
+    <div>
+      <button class="btn btn-primary superadminbtns2"> Weekly Report </button>
+    </div>
+    <div>
+      <button class="btn btn-primary superadminbtns3"> Monthly Report </button>
+    </div>
+  </div>
+  
 </div>
 <!-- this is the record one  -->
-<div class="onex" style="background-image: url('assets/images/best5.jpg'); min-height: 100vh; height: auto;" *ngIf="userType=='admin'">
+<div class="onex"  *ngIf="userType=='admin'" >
+  <div class="logo">
+    <img src="assets/images/yes.png" alt="Not loaded">
+  </div>
   <div class="find" *ngIf="userType=='admin'">
     <form [formGroup]="loginForm" (ngSubmit)="onSearch()">
       <input type="text" formControlName="id" placeholder="Enter ID">
-      <button type="submit">Search</button>
+      <button class="btn btn-primary" type="submit">Search</button>
     </form>
-  
-    <ng-container *ngIf="userData">
-      <table class="custom-table" *ngIf="userData.id !== null && userData.id !== undefined">
-        <thead *ngIf="userData.id">
+    
+    <ng-container *ngIf="userDataSearch">
+      <div class="theadmin">
+      <div class="table-responsive">
+      <table class="table table-hover custom-table " *ngIf="userDataSearch.length > 0">
+        <thead>
           <tr>
-            <th>ID</th>
-            <th>CNIC</th>
+            <th>User ID</th>
+            <th>Category ID</th>
+            <th>Email</th> 
             <th>Name</th>
-            <th>Family Name</th>
-            <th>Given Name</th>
-            <th>Father's Full Name</th>
+            <th>Last Name</th>
+            <th>P/Name</th>
+            <th>P/Last Name</th>
+            <th>Father Full Name</th>
             <th>Grandfather Name</th>
+            <th>Family Name</th>
+            <th>CNIC</th>
+            <th>Date of Birth</th>
+            <th>Date of Birth Solar </th>
+            <th>Place of Birth</th>
+            <th>Country</th>
+            <th>Province</th>
+            <th>District</th>
+            <th>Village</th>
+            <th>Country of Residence</th>
+            <th>Other Nationalities</th>
+            <th>Gender</th>
+            <th>Children</th>
+            <th>Height</th>
             <th>Material Status</th>
+            <th>Hair Colors</th>
+            <th>Eye Color</th>
+            <th>Current Address</th>
+            <th>Previous Address</th>
+            <th>Email Address</th>
+            <th>Mobile Number</th>
+            <th>Occupation</th>
+            <th>Employeer</th>
+            <th>Employeer Address</th>
+            <th>Previous Employer</th>
+            <th>Previous Employer Address</th>
+            <th>Have Passport</th>
+            <th>Previous Passport</th>
+            <th>Issue Date</th>
+            <th>Expiry Date</th>
+            <th>Passport Type</th>
+            <th>Job Title</th>
+            <th>Have Criminal</th>
+            <th>Criminal Details</th>
+            <th>Path</th>
+            <th>Docx Full URL</th>
+            
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{{ userData?.id }}</td>
-            <td>{{ userData?.cnic }}</td>
-            <td>{{ userData?.name }}</td>
-            <td>{{ userData?.familyName }}</td>
-            <td>{{ userData?.givenName }}</td>
-            <td>{{ userData?.fatherFulName }}</td>
-            <td>{{ userData?.grandFatherName }}</td>
-            <td>{{ userData?.materialStatus }}</td>
+          <tr *ngFor="let user of userDataSearch">
+            <td>{{ user?.userId }}</td>
+                <td>{{ user?.categoryId }}</td>
+                 <td>{{ user?.email }}</td> 
+                <td>{{ user?.name }}</td>
+                <td>{{ user?.lastName }}</td>
+                <td>{{ user.Pname }}</td>
+                <td>{{ user.PlastName }}</td>
+                <td>{{ user?.fatherFulName }}</td>
+                <td>{{ user?.grandFatherName }}</td>
+                <td>{{ user?.familyName }}</td>
+                <td>{{ user?.cnic }}</td>
+                <td>{{ user?.dob }}</td>
+                <td>{{ user?.Pdob }}</td>
+                <td>{{ user?.placeOfBirth }}</td>
+                <td>{{ user?.country }}</td>
+                <td>{{ user?.province }}</td>
+                <td>{{ user?.district }}</td>
+                <td>{{ user?.village }}</td>
+                <td>{{ user?.countryofResidence }}</td>
+                <td>{{ user?.otherNationalities }}</td>
+                <td>{{ user?.gender }}</td>
+                <td>{{ user?.children }}</td>
+                <td>{{ user?.hieght }}</td>
+                <td>{{ user?.materialStatus }}</td>
+                <td>{{ user?.hairColurs }}</td>
+                <td>{{ user?.eyeColor }}</td>
+                <td>{{ user?.currentAddress }}</td>
+                <td>{{ user?.previousAddress }}</td>
+                <td>{{ user?.emailAddress }}</td>
+                <td>{{ user?.mobileAddress }}</td>
+                <td>{{ user?.occupation }}</td>
+                <td>{{ user?.employeer }}</td>
+                <td>{{ user?.employeerAddrees }}</td>
+                <td>{{ user?.previousEmplyeer }}</td>
+                <td>{{ user?.previousEmplyeerAddress }}</td>
+                <td>{{ user?.havePassport }}</td>
+                <td>{{ user?.previousPassport }}</td>
+                <td>{{ user?.issueDate }}</td>
+                <td>{{ user?.expiryDate }}</td>
+                <td>{{ user?.passportType }}</td>
+                <td>{{ user?.jobTitle }}</td>
+                <td>{{ user?.haveCriminal }}</td>
+                <td>{{ user?.passportDetails }}</td>
+                <td>{{ user?.path }}</td>
+                <td>{{ user?.docxFullUrl }}</td>
           </tr>
         </tbody>
       </table>
-  
-      <div *ngIf="userData.id === null">
-        <div class="messageOfSesrch">
-        {{ userData?.message }}
+    </div>
+    
+      <div *ngIf="userDataSearch.length === 0">
+        <div class="messageOfSearch">
+          The data you searching for, is not found 
+        </div>
       </div>
-      </div>
+    </div>
     </ng-container>
+    
+    
   </div>
   
   
@@ -410,143 +508,125 @@
       </div>
       <div class="table-responsive">
         <table class="table table-hover custom-table">
-          <tbody>
+          <thead>
             <tr>
-              <th>Field</th>
-              <th>Value</th>
-              <th>Field</th>
-              <th>Value</th>
-              <th>Field</th>
-              <th>Value</th>
+              <th>User ID</th>
+              <th>Category ID</th>
+              <th>Email</th> 
+              <th>Name</th>
+              <th>Last Name</th>
+              <th>P/Name</th>
+              <th>P/Last Name</th>
+              <th>Father Full Name</th>
+              <th>Grandfather Name</th>
+              <th>Family Name</th>
+              <th>CNIC</th>
+              <th>Date of Birth</th>
+              <th>Date of Birth Solar </th>
+              <th>Place of Birth</th>
+              <th>Country</th>
+              <th>Province</th>
+              <th>District</th>
+              <th>Village</th>
+              <th>Country of Residence</th>
+              <th>Other Nationalities</th>
+              <th>Gender</th>
+              <th>Children</th>
+              <th>Height</th>
+              <th>Material Status</th>
+              <th>Hair Colors</th>
+              <th>Eye Color</th>
+              <th>Current Address</th>
+              <th>Previous Address</th>
+              <th>Email Address</th>
+              <th>Mobile Number</th>
+              <th>Occupation</th>
+              <th>Employeer</th>
+              <th>Employeer Address</th>
+              <th>Previous Employer</th>
+              <th>Previous Employer Address</th>
+              <th>Have Passport</th>
+              <th>Previous Passport</th>
+              <th>Issue Date</th>
+              <th>Expiry Date</th>
+              <th>Passport Type</th>
+              <th>Job Title</th>
+              <th>Have Criminal</th>
+              <th>Criminal Details</th>
+              <th>Path</th>
+              <th>Docx Full URL</th>
+              
             </tr>
+          </thead>
+          <tbody>
             <ng-container *ngFor="let user of userData">
               <tr>
-                <td>PlastName</td>
-                <td>{{ user.PlastName }}</td>
-                <td>Pname</td>
-                <td>{{ user.Pname }}</td>
-                <td>Children</td>
-                <td>{{ user.children }}</td>
-              </tr>
-              <tr>
-                <td>CNIC</td>
-                <td>{{ user.cnic }}</td>
-                <td>Converted Date</td>
-                <td>{{ user.convertedDate }}</td>
-                <td>Converted Datep</td>
-                <td>{{ user.covnertedDatep }}</td>
-              </tr>
-              <tr>
-                <td>Country</td>
-                <td>{{ user.country }}</td>
-                <td>Country of Residence</td>
-                <td>{{ user.countryofResidence }}</td>
-                <td>Current Address</td>
-                <td>{{ user.currentAddress }}</td>
-              </tr>
-              <tr>
-                <td>District</td>
-                <td>{{ user.district }}</td>
-                <td>Email</td>
-                <td>{{ user.email }}</td>
-                <td>Email Address</td>
-                <td>{{ user.emailAddress }}</td>
-              </tr>
-              <tr>
-                <td>Expiry Date</td>
-                <td>{{ user.expiryDate }}</td>
-                <td>Eye Color</td>
-                <td>{{ user.eyeColor }}</td>
-                <td>Family Name</td>
-                <td>{{ user.familyName }}</td>
-              </tr>
-              <tr>
-                <td>Father Full Name</td>
-                <td>{{ user.fatherFulName }}</td>
-                <td>Fax</td>
-                <td>{{ user.fax }}</td>
-                <td>Gender</td>
-                <td>{{ user.gender }}</td>
-              </tr>
-              <tr>
-                <td>Given Name</td>
-                <td>{{ user.givenName }}</td>
-                <td>Grandfather Name</td>
-                <td>{{ user.grandFatherName }}</td>
-                <td>Hair Colors</td>
-                <td>{{ user.hairColurs }}</td>
-              </tr>
-              <tr>
-                <td>Have Criminal</td>
-                <td>{{ user.haveCriminal }}</td>
-                <td>Have Passport</td>
-                <td>{{ user.havePassport }}</td>
-                <td>Height</td>
-                <td>{{ user.hieght }}</td>
-              </tr>
-              <tr>
-                <td>ID</td>
-                <td>{{ user.id }}</td>
-                <td>Issue Date</td>
-                <td>{{ user.issueDate }}</td>
-                <td>Job Title</td>
-                <td>{{ user.jobTitle }}</td>
-              </tr>
-              <tr>
-                <td>Last Name</td>
-                <td>{{ user.lastName }}</td>
-                <td>Material Status</td>
-                <td>{{ user.materialStatus }}</td>
-                <td>Mobile Address</td>
-                <td>{{ user.mobileAddress }}</td>
-              </tr>
-              <tr>
-                <td>Name</td>
-                <td>{{ user.name }}</td>
-                <td>Other Nationalities</td>
-                <td>{{ user.otherNationalities }}</td>
-                <td>Others Distinguishing</td>
-                <td>{{ user.othersDistangushing }}</td>
-              </tr>
-              <tr>
-                <td>Passport Details</td>
-                <td>{{ user.passportDetails }}</td>
-                <td>Passport Type</td>
-                <td>{{ user.passportType }}</td>
-                <td>Path</td>
-                <td>{{ user.path }}</td>
-              </tr>
-              <tr>
-                <td>Place of Birth</td>
-                <td>{{ user.placeOfBirth }}</td>
-                <td>Previous Address</td>
-                <td>{{ user.previousAddress }}</td>
-                <td>Previous Passport</td>
-                <td>{{ user.previousPassport }}</td>
-              </tr>
-              <tr>
-                <td>Province</td>
-                <td>{{ user.province }}</td>
-                <td>User ID</td>
                 <td>{{ user.userId }}</td>
-                <td>Village</td>
+                <td>{{ user.categoryId }}</td>
+                 <td>{{ user.email }}</td> 
+                <td>{{ user.name }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.Pname }}</td>
+                <td>{{ user.PlastName }}</td>
+                <td>{{ user.fatherFulName }}</td>
+                <td>{{ user.grandFatherName }}</td>
+                <td>{{ user.familyName }}</td>
+                <td>{{ user.cnic }}</td>
+                <td>{{ user.dob }}</td>
+                <td>{{ user.Pdob }}</td>
+                <td>{{ user.placeOfBirth }}</td>
+                <td>{{ user.country }}</td>
+                <td>{{ user.province }}</td>
+                <td>{{ user.district }}</td>
                 <td>{{ user.village }}</td>
+                <td>{{ user.countryofResidence }}</td>
+                <td>{{ user.otherNationalities }}</td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.children }}</td>
+                <td>{{ user.hieght }}</td>
+                <td>{{ user.materialStatus }}</td>
+                <td>{{ user.hairColurs }}</td>
+                <td>{{ user.eyeColor }}</td>
+                <td>{{ user.currentAddress }}</td>
+                <td>{{ user.previousAddress }}</td>
+                <td>{{ user.emailAddress }}</td>
+                <td>{{ user.mobileAddress }}</td>
+                <td>{{ user.occupation }}</td>
+                <td>{{ user.employeer }}</td>
+                <td>{{ user.employeerAddrees }}</td>
+                <td>{{ user.previousEmplyeer }}</td>
+                <td>{{ user.previousEmplyeerAddress }}</td>
+                <td>{{ user.havePassport }}</td>
+                <td>{{ user.previousPassport }}</td>
+                <td>{{ user.issueDate }}</td>
+                <td>{{ user.expiryDate }}</td>
+                <td>{{ user.passportType }}</td>
+                <td>{{ user.jobTitle }}</td>
+                <td>{{ user.haveCriminal }}</td>
+                <td>{{ user.passportDetails }}</td>
+                <td>{{ user.path }}</td>
+                <td>{{ user.docxFullUrl }}</td>
+                
               </tr>
-              <tr>
-                <td>Work Telephone</td>
-                <td>{{ user.workTelephone }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="line"> <hr> New...</td>
-
             </ng-container>
           </tbody>
         </table>
+        
+        
       </div>
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item page" [ngClass]="{ disabled: currentPage === 1 }">
+            <a class="page-link" (click)="onPageChange(currentPage - 1)">Back</a>
+          </li>
+          <li class="page-item" *ngFor="let page of getPaginationArray()">
+            <a class="page-link" (click)="onPageChange(page)" [ngClass]="{ active: currentPage === page }">{{ page }}</a>
+          </li>
+          <li class="page-item" [ngClass]="{ disabled: currentPage === totalPages }">
+            <a class="page-link" (click)="onPageChange(currentPage + 1)">Next</a>
+          </li>
+        </ul>
+      </nav>
     
     
     

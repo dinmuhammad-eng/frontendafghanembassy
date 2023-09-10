@@ -11,9 +11,14 @@ import { ElementRef } from '@angular/core';
   styleUrls: ['./page1.component.css']
 })
 export class Page1Component implements OnInit {
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  totalCount: number = 0;
+  totalPages: number = 0;
   language: string = 'english';
   isLoading: boolean = false;
   userData: any;
+  userDataSearch:any;
   loginForm: FormGroup;
   userType: string;
   static loginAttempts: number = 0; // Track the number of login attempts for all users
@@ -45,7 +50,7 @@ export class Page1Component implements OnInit {
 
       grandFatherName: ['', Validators.required,Validators.maxLength(70)],
       familyName: ['', Validators.required,Validators.maxLength(70)],
-      cnic: ['', Validators.required,Validators.maxLength(10)],
+      cnic: ['', Validators.required],
       dob: ['', [Validators.required, Validators.pattern('^(?:\\d{1,2}[-./]\\d{1,2}[-./]\\d{4})$')]],
       Pdob: ['', [Validators.required, Validators.pattern('^(?:[0-9۰-۹]{1,2}[-./][0-9۰-۹]{1,2}[-./][0-9۰-۹]{4})$')]],
       placeOfBirth: ['', Validators.required],
@@ -71,7 +76,7 @@ export class Page1Component implements OnInit {
       currentAddress:['', Validators.required],
       previousAddress:['', Validators.required],
       emailAddress:['', Validators.required],
-      mobileAddress: ['',Validators.required, Validators.pattern(/^\d+$/)]
+      mobileAddress: ['',Validators.required]
       
     });
   }
@@ -129,92 +134,75 @@ export class Page1Component implements OnInit {
   
   
   ngOnInit() {
-    this.getUserData();
+    this.getUserData(this.currentPage, this.itemsPerPage);
   }
 
-  getUserData() {
-    this.userService.getUser().subscribe(
+  getUserData(page: number, perPage: number) {
+    this.userService.getUser(page, perPage).subscribe(
       (response: any) => {
-        this.userData = response;
+        this.userData = response.data;
+        this.totalCount = response.totalCount;
+        this.totalPages = Math.ceil(this.totalCount / this.itemsPerPage); // Calculate the total number of pages
         console.log('User data retrieved:', this.userData);
+        console.log('Calculated totalPages:', this.totalPages);
+        console.log("total record : ",this.totalCount)
+
+      console.log('User data retrieved:', this.userData);
+      },
+      (error: any) => {
+        console.error('Error fetching user data:', error);
       }
     );
   }
 
-  onSearch(): void {
-    const id = this.loginForm.value.id;
-    this.userService.getTheIdof(id).subscribe((res: any) => {
-      if (res.data) {
-        const data = res.data;
-        this.userData = {
-          id: data['id'],
-          cnic: data['cnic'],
-          name: data['name'],
-          familyName: data['familyName'],
-          givenName: data['givenName'],
-          fatherFulName: data['fatherFulName'],
-          grandFatherName: data['grandFatherName'],
-        
-          births: data['births'],
-          placeOfBirth: data['placeOfBirth'],
-          country: data['country'],
-          province: data['province'],
-          district: data['district'],
-          village: data['village'],
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.getUserData(this.currentPage, this.itemsPerPage);
+    console.log('Current Page:', this.currentPage);
+  }
 
-          materialStatus: data['materialStatus'],
-          gender: data['gender'],
-          children: data['children'],
-          
-          countryofResidence: data['countryofResidence'],
-          otherNationalities: data['otherNationalities'],
-          hieght: data['hieght'],
-          hairColurs: data['hairColurs'],
-          eyeColor: data['eyeColor'],
-          othersDistangushing: data['othersDistangushing'],
-          currentAddress: data['currentAddress'],
-          previousAddress: data['previousAddress'],
-          emailAddress: data['emailAddress'],
-          mobileAddress: data['mobileAddress'],
-          workTelephone: data['workTelephone'],
-          fax: data['fax'],
-          message: null
-        };
-      } else {
-        this.userData = {
-          id: null,
-          message: 'The data you are searching for, was not found !'
-        };
-      }
-    });
+  getPaginationArray(): number[] {
+    return Array(this.totalPages).fill(0).map((_, index) => index + 1);
   }
 
   
+  onSearch(): void {
+    const id = this.loginForm.value.id;
+    this.userService.getTheIdof(id).subscribe((res: any) => {
+      this.userDataSearch = res.data ? res.data : [];
+      console.log('Response from backend:', res);
+    });
+  }
+  
+  
+  
+  
+
+  
     login() {
-      if (Page1Component.loginAttempts >= 1) {
-        // Display error message or redirect to a limit exceeded page
+      if (Page1Component.loginAttempts >= 2) {
         console.log('Maximum login limit exceeded. Please try again later.');
         this.exeeded = 'Only 100 inividuals are to be registered to fill the form so here the limitiation is done and you should try tommarrow ! thank you ';
   
         return;
       }
       const formData = this.loginForm.value;
-  const storedToken = localStorage.getItem('token'); // Retrieve the token from local storage
-  const storedUserId = localStorage.getItem('userId'); // Retrieve the user ID from local storage
+  const storedToken = localStorage.getItem('token'); 
+  const storedUserId = localStorage.getItem('userId'); 
   console.log("Stored User ID:", storedUserId);
   
   if (storedUserId) {
-    formData.userId = storedUserId; // Add the user ID to the formData object
+    formData.userId = storedUserId; 
     console.log("very nice ",formData.userId);
   }
 
   this.userService.saveUsercat(formData).subscribe((res:any) => {
     console.log('Data sent to backend successfully');
-    const categoryId = res.categoryId; // Assuming the user ID is returned in the response
+    const categoryId = res.categoryId; 
     this.userService.setcategoryId(categoryId)
     this.loginForm.reset();
-    this.isLoading = true; // Show the loader
-    Page1Component.loginAttempts++; // Increment the login attempts for all users
+    this.isLoading = true; 
+    Page1Component.loginAttempts++; 
           console.log("this is fine",Page1Component.loginAttempts)
 
     setTimeout(() => {
@@ -224,10 +212,10 @@ export class Page1Component implements OnInit {
 }
     
 
-  deleteStudent(id: string) {
-    this.userService.deleteStudent(id).subscribe((response: any) => {
-      console.log(response.message);
-      this.getUserData();
-    });
-  }
+  // deleteStudent(id: string) {
+  //   this.userService.deleteStudent(id).subscribe((response: any) => {
+  //     console.log(response.message);
+  //     this.getUserData();
+  //   });
+  // }
 }

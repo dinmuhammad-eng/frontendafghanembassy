@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-page2',
   templateUrl: './page2.component.html',
@@ -129,6 +130,46 @@ export class Page2Component {
       this.successMessage = null;
     }
   }
+  formatDateInput(input: any) {
+    const value = input.value;
+  
+    if (value) {
+      const formattedValue = value.replace(/[^\d]/g, '');
+  
+      let day = formattedValue.substr(0, 2) || '';
+      let month = formattedValue.substr(2, 2) || '';
+      let year = formattedValue.substr(4, 4) || '';
+  
+      if (day.length >= 2) {
+        day = day.substr(0, 2);
+      }
+  
+      if (month.length >= 2) {
+        month = month.substr(0, 2);
+      }
+  
+      if (year.length > 4) {
+        year = year.substr(0, 4);
+      }
+  
+      let joinedValue = day;
+  
+      if (day.length === 2) {
+        joinedValue += `/${month}`;
+      }
+  
+      if (month.length === 2 ) {
+        joinedValue += `/${year}`;
+      }
+  
+      // Check if the last character entered is a slash and remove it
+      if (input.value.length > 0 && input.value[input.value.length - 1] === '/') {
+        joinedValue = joinedValue.slice(0, -1);
+      }
+  
+      input.value = joinedValue;
+    }
+  }
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -145,6 +186,15 @@ export class Page2Component {
   getDocxObjectURL(file: File): string {
     return URL.createObjectURL(file);
   }
+  
+  getFileExtension(filename: string): string {
+    const parts = filename.split('.');
+    if (parts.length > 1) {
+      return parts.pop()?.toLowerCase() || '';
+    }
+    return '';
+  }
+  
   
   
 }

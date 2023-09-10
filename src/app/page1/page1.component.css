@@ -184,7 +184,7 @@
   margin-top: -20px;
 }
 
-.custom-table {
+/* .custom-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 11px;
@@ -201,14 +201,18 @@
   background-color: black;
   color: white;
   text-align: center;
-}
+} */
 
 .theadmin{
   margin-left: 5px;
   margin-right: 5px;
   border: 1px solid black;
   margin-top: 15px;
+  padding: 5px;
 
+}
+nav{
+  margin-top: 50px;
 }
 .headone{
     text-align: center;
@@ -217,16 +221,41 @@
     color: black;
     padding: 9px;
 }
-.custom-table thead tr th {
-  background-color: #4f4fd7 !important;
-  color: white !important;
+
+/* Apply border radius 0 to the first page link (Back) */
+.pagination .page-item:first-child .page-link {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
+
+/* Apply border radius 0 to the last page link (Next) */
+.pagination .page-item:last-child .page-link {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+
+.custom-table thead tr th {
+  background-color: blue !important;
+  color: white !important;
+  white-space: nowrap; 
+  overflow: hidden; 
+  font-weight: 400 ;
+  text-overflow: ellipsis; 
+  border-left: 1px solid black;
+}
+
 .custom-table tbody tr td {
   border-right: 1px solid black;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 .custom-table thead th {
   text-align: center;
 }
+
 
 .update-button {
     display: inline-block;
@@ -270,35 +299,28 @@
   }
   
 .find{
-  margin-left: 5px;
-  padding-top: 15px;
+  margin-left: 4px;
+  padding-top: 20px;
 }
 .find input {
   padding-right: 250px;
   margin-right: 7px;
-  border: none;
-  border-bottom: 2px solid black;
-  transition: border-color 0.3s ease;
+  border: 1px solid black;
+  
 }
 
 .find input:focus {
   outline: none;
-  border-bottom: 2px solid blue;
 }
 
 
 .find button{
-  border: 3px solid #4f4fd7;
   border-radius: 1px;
-  background: #4f4fd7;
-  color: white;
+  transition: transform 0.4s;
+  margin-bottom: 5px;
 }
 .find button:hover{
-  border: 3px solid white;
-  border-radius: 1px;
-  background: white;
-  color: black ;
-  font-weight: bold;
+  transform: scale(1.1);
 }
 .loader-overlay {
   position: fixed;
@@ -331,12 +353,29 @@
   opacity: 0;
   transition: opacity 0.5s ease-out;
 }
-.messageOfSesrch{
+.messageOfSearch{
   display: inline-block;
-  border: 1px solid red;
+  border-bottom: 1px solid red;
   padding: 10px;
   margin-top: 12px;
-  border-radius: 1px;
+  margin-left: 72px;
+}
+.superadminbtns{
+  display: flex;
+  margin-top: 30px;
+  justify-content: center;
+}
+.superadminbtns1{
+ margin-right: 10px;
+ border-radius: 0;
+}
+.superadminbtns2{
+margin-right: 10px;
+border-radius: 0;
+}
+.superadminbtns3{
+margin-right: 10px;
+border-radius: 0;
 }
 @media screen and (max-width: 660px) {
   .main {

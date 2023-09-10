@@ -1,4 +1,4 @@
-<div style="background-image: url('assets/images/best5.jpg'); min-height: 100vh; height: auto;"
+<div 
   *ngIf="!(userType === 'admin')">
   <div class="logo">
     <img src="assets/images/yes.png" alt="Not loaded">
@@ -129,15 +129,23 @@
                 required>
             </div>
 
+
+
             <div class="form-group mt-2" *ngIf="loginForm.get('havePassport')?.value === 'yes'">
               <label for="issueDate">
                 {{ language === 'urdu' ? 'تاریخ اجرا' : (language === 'pashto' ? 'جا رخېدل تاریخ' : 'Issue Date') }}
                 <span class="compulsory">*</span>
               </label>
-              <input class="form-control inputs" type="date" id="issueDate" formControlName="issueDate"
+              <input class="form-control inputs" type="text" id="issueDate" formControlName="issueDate"
                 [class.is-invalid]="loginForm.get('issueDate')?.invalid && loginForm.get('issueDate')?.touched"
-                required>
+                placeholder="Day/Month/Year" required pattern="^(?:\d{1,2}[/]\d{1,2}(?:[/]\d{4})?)?$"
+                (input)="formatDateInput($event.target)">
             </div>
+
+           
+
+
+
 
             <div class="form-group mt-2" *ngIf="loginForm.get('havePassport')?.value === 'yes'">
               <label for="expiryDate">
@@ -146,7 +154,8 @@
               </label>
               <input class="form-control inputs" type="text" id="expiryDate" formControlName="expiryDate"
                 [class.is-invalid]="loginForm.get('expiryDate')?.invalid && loginForm.get('expiryDate')?.touched"
-                required>
+                placeholder="Day/Month/Year" required pattern="^(?:\d{1,2}[/]\d{1,2}(?:[/]\d{4})?)?$"
+                (input)="formatDateInput($event.target)">
             </div>
           </div>
 
@@ -270,24 +279,28 @@
             </label>
             <input type="file" id="imageInput" accept="image/*" (change)="onFileSelected($event)" class="custom-file-input">
           </div>
-          <div>
-            <label for="docxInput" class="custom-file-label files btsof">
-              {{ language === 'urdu' ? 'فائل کا انتخاب کریں' : (language === 'pashto' ? 'د فایل غوره کړئ' : 'Choose File') }}
-            </label>
-            <input type="file" id="docxInput" accept=".docx,.pdf" (change)="onDocxFileSelected($event)" class="custom-file-input">
-            <div *ngIf="selectedDocxFile">
-              <p class="filepragraph">
-                {{ language === 'urdu' ? 'فائل کامیابی سے منسلک کر دی گئی ہے' : (language === 'pashto' ? 'د فایل په بریاليتوب سره لمل شو' : 'The file has been attached successfully') }}
-              </p>
+          <div class="flexlastdocx">
+            <div class="leftside1">
+              <div class="file-icon">
+                <img *ngIf="selectedDocxFile && getFileExtension(selectedDocxFile.name) === 'pdf'" src="assets/images/pdf.png" alt="PDF Icon">
+                <img *ngIf="selectedDocxFile && getFileExtension(selectedDocxFile.name) === 'docx'" src="assets/images/docx-8.png" alt="DOCX Icon">
+              </div>
+            </div>
+            <div class="leftside2">
               <div class="file-container">
-                <div class="file-icon">
-                  <!-- Display a file icon based on the file type -->
-                </div>
-                <p class="file-name">{{ selectedDocxFile.name }}</p>
-                
+                <label for="docxInput" class="custom-file-label files btsof">
+                  {{ language === 'urdu' ? 'فائل کا انتخاب کریں' : (language === 'pashto' ? 'د فایل غوره کړئ' : 'Choose File') }}
+                </label>
+                <input type="file" id="docxInput" accept=".pdf" (change)="onDocxFileSelected($event)" class="custom-file-input">
+              </div>
+              <div *ngIf="selectedDocxFile" class="success-messages">
+                The file is attached successfully.
               </div>
             </div>
           </div>
+          
+          
+          
         </div>
         
         
@@ -318,10 +331,10 @@
 
 
 
-
+<!-- 
       <div *ngIf="successMessage">
         <p>{{ successMessage }}</p>
-      </div>
+      </div> -->
     </div>
   </form>
   <div *ngIf="isLoading" class="loader-overlay">

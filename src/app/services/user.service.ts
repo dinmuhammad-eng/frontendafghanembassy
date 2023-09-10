@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 
 import { Observable } from 'rxjs';
@@ -69,11 +69,16 @@ export class UserService {
   forgetPassword(email: string): Observable<any> {
     return this.http.post("http://localhost:8080/user/forgotPassword", { email });
   }
+  getUser(page: number, perPage: number): Observable<any> {
+    // Create HttpParams and append page and perPage parameters to it
+    let params = new HttpParams();
+    params = params.append('page', page.toString());
+    params = params.append('perPage', perPage.toString());
 
-  getUser(): Observable<any> {
-
-    return this.http.get("http://localhost:8080/user/get");
+    // Use params in the API request
+    return this.http.get<any>('http://localhost:8080/user/get', { params });
   }
+
   getUserrecord(): Observable<any> {
 
     return this.http.get("http://localhost:8080/category/get");

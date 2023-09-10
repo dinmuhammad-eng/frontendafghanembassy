@@ -84,8 +84,12 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.openDialog();
-  }
+         const hasVisitedBefore = localStorage.getItem('hasVisited');
+         if (!hasVisitedBefore) {
+           this.openDialog();
+          localStorage.setItem('hasVisited', 'true');
+         }
+      }
 
   openDialog(): void {
     const dialogRef: MatDialogRef<DialogPopupComponent> = this.dialog.open(DialogPopupComponent, {
